@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * PageController
+ * PageController.
  *
  * @author Florian Weber <florian.weber.de@icloud.com>
  */
