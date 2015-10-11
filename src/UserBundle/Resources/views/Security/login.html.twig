@@ -1,5 +1,7 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block title %}Login{% endblock %}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
@@ -38,6 +40,7 @@
 
             <div class="text-center" style="padding-top: 19px; font-weight: 600;">
                 <i class="fa fa-paper-plane"></i>
+                {{ app.request.host }}
                 Webmail
             </div>
 

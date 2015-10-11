@@ -1,50 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html.twig' %}
 
-        <title>Security</title>
+{% block title %}Security{% endblock %}
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ asset('css/security.css') }}">
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/security.css') }}">
+{% endblock %}
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    </head>
-    <body>
+{% block javascripts %}{% endblock %}
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-offset-3 col-lg-6">
+{% block body %}
 
-                    {% if app.request.hasPreviousSession %}
-                        {% for type, messages in app.session.flashbag.all() %}
-                            {% for message in messages %}
-                                <div class="alert alert-danger flash-{{ type }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6">
+
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger flash-{{ type }}">
+                                {{ message }}
+                            </div>
                         {% endfor %}
-                    {% endif %}
+                    {% endfor %}
+                {% endif %}
 
-                </div>
             </div>
         </div>
+    </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-offset-3 col-lg-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6">
 
-                    {% block fos_user_content %}
-                    {% endblock fos_user_content %}
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
 
-                </div>
             </div>
         </div>
+    </div>
 
-    </body>
-</html>
+{% endblock %}
