@@ -1,10 +1,101 @@
+/*html, body, .app {
+    height: 100%;
+}*/
+
 body {
     font-family: 'Open Sans', sans-serif;
+}
+
+.app-container {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    /*height: 100%;*/
+}
+
+.app-font-success {
+    color: #2ECC71;
+}
+
+.app-font-danger {
+    color: #D91E18;
+}
+
+.app-font-warning {
+    color: #F7CA18;
+}
+
+.app-font-info {
+    color: #59ABE3;
+}
+
+.app-font-primary {
+    color: #59ABE3;
+}
+
+/*
+ * APP SIDEBAR
+ */
+
+.app-sidebar {
+    background-color: #F2F1EF;
+    padding: 0;
+    /*height: 100%;*/
+}
+
+.app-sidebar .app-label {
+    font-size: 12px;
+    font-weight: 600;
+    padding-left: 19px;
+    padding-right: 19px;
+}
+
+.app-sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.app-sidebar ul > li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0;
+    font-size: 18px;
+    padding-left: 19px;
+    padding-right: 19px;
+}
+
+.app-sidebar ul > li:hover {
+    background-color: #BDC3C7;
+    cursor: pointer;
+}
+
+.app-sidebar .app-section {
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
+
+.app-sidebar .app-badge {
+    background-color: #4183D7;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.app-sidebar .app-divider {
+    border-top: 1px solid #D2D7D3;
 }
 
 /*
  * NAVBAR
  */
+
+.navbar {
+    margin-bottom: 0;
+}
 
 .navbar-default {
     background-color: #59ABE3;

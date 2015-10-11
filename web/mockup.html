@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="/github/webmail-client/web/favicon.ico" />
+
+        <title>Inbox</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/github/webmail-client/web/assets/vendor/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700">
+        <link rel="stylesheet" href="/github/webmail-client/web/assets/vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/github/webmail-client/web/css/app.css">
+
+        <!-- JS -->
+        <script src="/github/webmail-client/web/assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="/github/webmail-client/web/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/github/webmail-client/web/js/app.js"></script>
+
+    </head>
+    <body>
+
+    <nav class="navbar navbar-default navbar-static-top" id="app-navbar">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/github/webmail-client/web/app_dev.php/">Webmail</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <!-- NAV LINKS LEFT -->
+                <ul class="nav navbar-nav">
+
+                    <li><a href="#">Inbox</a></li>
+
+                </ul>
+
+                <!-- NAV LINKS RIGHT -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                            fweber
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">
+                                <i class="fa fa-cog"></i>
+                                Settings
+                            </a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/github/webmail-client/web/app_dev.php/logout">
+                                <i class="fa fa-power-off"></i>
+                                Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="app">
+        <div class="app-container container-fluid">
+
+            <div class="app-sidebar col-lg-2">
+
+                <div class="app-section">
+                    <span class="app-label">Mailboxes</span>
+
+                    <ul>
+                        <li data-href="#">
+                            <i class="fa fa-inbox"></i>
+                            Inbox
+                            <span class="app-badge pull-right">26</span>
+                        </li>
+                        <li data-href="#">
+                            <i class="fa fa-inbox"></i>
+                            iCloud
+                            <span class="app-badge pull-right">3</span>
+                        </li>
+                        <li data-href="#">
+                            <i class="fa fa-inbox"></i>
+                            itaw
+                        </li>
+                        <li data-href="#">
+                            <i class="fa fa-inbox"></i>
+                            Ligneus
+                            <span class="app-badge pull-right">23</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="app-divider"></div>
+
+                <div class="app-section">
+                    <ul>
+                        <li data-href="#">
+                            <i class="app-font-warning fa fa-circle"></i>
+                            Tagged
+                            <span class="app-badge pull-right">9</span>
+                        </li>
+                        <li data-href="#">
+                            <i class="app-font-info fa fa-circle"></i>
+                            Unread
+                            <span class="app-badge pull-right">26</span>
+                        </li>
+                        <li data-href="#">
+                            <i class="app-font-success fa fa-circle"></i>
+                            Today
+                            <span class="app-badge pull-right">1</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="app-section">
+                    <span class="app-label">Accounts</span>
+
+                    <ul>
+                        <li data-href="#">
+                            <i class="fa fa-cloud"></i>
+                            iCloud
+                            <span class="app-badge pull-right">3</span>
+                        </li>
+                        <li data-href="#">
+                            <i class="fa fa-at"></i>
+                            itaw
+                        </li>
+                        <li data-href="#">
+                            <i class="fa fa-at"></i>
+                            Ligneus
+                            <span class="app-badge pull-right">23</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="app-elements col-lg-3">
+            </div>
+            <div class="app-detail col-lg-7">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
