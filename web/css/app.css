@@ -34,6 +34,10 @@ body {
     color: #59ABE3;
 }
 
+.app-font-transp {
+    color: transparent;
+}
+
 /*
  * APP SIDEBAR
  */
@@ -41,7 +45,6 @@ body {
 .app-sidebar {
     background-color: #F2F1EF;
     padding: 0;
-    /*height: 100%;*/
 }
 
 .app-sidebar .app-label {
@@ -87,6 +90,48 @@ body {
 
 .app-sidebar .app-divider {
     border-top: 1px solid #D2D7D3;
+}
+
+/*
+ * APP ELEMENTS
+ */
+
+.app-elements {
+    background-color: #FFFFFF;
+    padding: 0;
+    border-right: 1px solid #EEEEEE;
+}
+
+.app-elements ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.app-elements ul > li {
+    border-bottom: 1px solid #EEEEEE;
+    padding-left: 12px;
+    padding-top: 9px;
+}
+
+.app-elements ul > li:hover {
+    cursor: pointer;
+    background-color: #EEEEEE;
+}
+
+.app-elements .app-mail-title {
+    font-weight: 600;
+    margin-left: 25px;
+}
+
+.app-elements .app-mail-from {
+    font-weight: 600;
+    margin-left: 7px;
+}
+
+.app-elements .app-mail-text {
+    margin-left: 25px;
 }
 
 /*
