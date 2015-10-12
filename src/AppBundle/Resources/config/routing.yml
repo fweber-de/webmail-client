@@ -1,3 +1,11 @@
 dashboard:
-    path:   /
-    defaults: { _controller: AppBundle:Page:dashboard }
+    path:       /
+    defaults:   { _controller: AppBundle:Page:dashboard }
+
+inbox:
+    path:       /inbox
+    defaults:   { _controller: AppBundle:Mail:inbox }
+
+accounts:
+    resource:   "@AppBundle/Resources/config/Account/routing.yml"
+    prefix:     /accounts

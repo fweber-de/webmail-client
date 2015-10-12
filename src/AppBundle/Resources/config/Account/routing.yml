@@ -1,0 +1,7 @@
+accounts_collection:
+    path:       /
+    defaults:   { _controller: AppBundle:Account:collection }
+
+accounts_create:
+    path:       /new
+    defaults:   { _controller: AppBundle:Account:create }

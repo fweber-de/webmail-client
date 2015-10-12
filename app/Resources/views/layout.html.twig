@@ -4,12 +4,14 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
 
 {% block body %}
 
     {% include '_navbar.html.twig' %}
-    
+
     {% block content %}{% endblock %}
 
 {% endblock %}

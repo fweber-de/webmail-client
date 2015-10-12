@@ -2,7 +2,16 @@
 
 {% block content %}
 
-    <div class="sidebar">
+<div class="app">
+    <div class="app-container container-fluid">
+
+        {{ render(controller('AppBundle:Mail:sidebar')) }}
+
+        {% include 'Mail/_elements.html.twig' %}
+
+        {% include 'Mail/_detail.html.twig' %}
+
     </div>
+</div>
 
 {% endblock %}

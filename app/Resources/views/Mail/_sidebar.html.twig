@@ -1,0 +1,50 @@
+<div class="app-sidebar col-lg-2 col-md-2">
+
+    <div class="app-section">
+        <span class="app-label">Mailboxes</span>
+
+        <ul>
+            <li data-href="{{ path('inbox') }}">
+                <i class="fa fa-inbox"></i>
+                Inbox
+            </li>
+        </ul>
+    </div>
+
+    <div class="app-divider"></div>
+
+    <div class="app-section">
+        <ul>
+            <li data-href="#">
+                <i class="app-font-warning fa fa-circle"></i>
+                Tagged
+            </li>
+            <li data-href="#">
+                <i class="app-font-info fa fa-circle"></i>
+                Unread
+            </li>
+            <li data-href="#">
+                <i class="app-font-success fa fa-circle"></i>
+                Today
+            </li>
+        </ul>
+    </div>
+
+    <div class="app-section">
+        <span class="app-label">Accounts</span>
+
+        {% if accounts|length() > 0 %}
+            <ul>
+            </ul>
+        {% else %}
+            <div class="app-link-box">
+                <a class="btn btn-link" href="{{ path('accounts_create') }}">
+                    <i class="fa fa-plus"></i>
+                    Add Account
+                </a>
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>

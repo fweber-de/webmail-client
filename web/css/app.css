@@ -48,8 +48,8 @@ body {
 .app-sidebar .app-label {
     font-size: 12px;
     font-weight: 600;
-    padding-left: 19px;
-    padding-right: 19px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .app-sidebar ul {
@@ -63,8 +63,8 @@ body {
     padding-bottom: 5px;
     margin: 0;
     font-size: 18px;
-    padding-left: 19px;
-    padding-right: 19px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .app-sidebar ul > li:hover {
@@ -88,6 +88,11 @@ body {
 
 .app-sidebar .app-divider {
     border-top: 1px solid #D2D7D3;
+}
+
+.app-sidebar .app-link-box {
+    /*padding-left: 12px;*/
+    /*padding-top: 12px;*/
 }
 
 /*
