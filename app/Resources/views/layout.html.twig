@@ -10,8 +10,38 @@
 
 {% block body %}
 
+    <!-- SECTIONS -->
+    <span class="hidden" id="current-section-1">{% block currentSection1 %}{% endblock %}</span>
+    <span class="hidden" id="current-section-2">{% block currentSection2 %}{% endblock %}</span>
+    <span class="hidden" id="current-section-3">{% block currentSection3 %}{% endblock %}</span>
+
+    <!-- NAVBAR -->
     {% include '_navbar.html.twig' %}
 
+    <!-- FLASH MESSAGES -->
+    {% if app.session.flashbag.get('notice')|length() > 0 or app.session.flashbag.get('notice')|length() > 0 %}
+        <div class="container-fluid" style="margin-top: 30px;">
+            <div class="row">
+                <div class="col-lg-offset-3 col-lg-6">
+
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="app-flash-notice alert alert-info">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+
+                    {% for flashMessage in app.session.flashbag.get('error') %}
+                        <div class="app-flash-notice alert alert-danger">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- CONTENT -->
     {% block content %}{% endblock %}
 
 {% endblock %}

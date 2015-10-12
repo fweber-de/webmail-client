@@ -6,7 +6,53 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <h1>Accounts</h1>
+                <h1>
+                    Accounts
+                    <a class="btn btn-success pull-right" href="{{ path('accounts_create', {'step': 'nylas'}) }}">
+                        <i class="fa fa-plus"></i>
+                        Add Account
+                    </a>
+                </h1>                
+
+                {% for account in accounts %}
+                    <div class="app-account media">
+                        <div class="media-left" style="font-size: 45px;">
+                            <i class="fa fa-at"></i>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ account.shortName|default(account.emailAddress) }}</h4>
+
+                            <table>
+                                <tr>
+                                    <td>Mail:</td>
+                                    <td>{{ account.emailAddress }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Provider:</td>
+                                    <td>{{ account.provider }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Token:</td>
+                                    <td><code>{{ account.accessToken }}</code></td>
+                                </tr>
+                                <tr>
+                                    <td>ID:</td>
+                                    <td><code>{{ account.accountId }}</code></td>
+                                </tr>
+                            </table>
+
+                            <a class="btn btn-xs btn-warning" href="{{ path('accounts_update', {'accountId': account.accountId}) }}">
+                                <i class="fa fa-edit"></i>
+                                Edit
+                            </a>
+
+                            <a class="btn btn-xs btn-danger" href="{{ path('accounts_delete', {'accountId': account.accountId}) }}">
+                                <i class="fa fa-trash"></i>
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
 
             </div>
         </div>

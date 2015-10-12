@@ -59,7 +59,7 @@ class Account
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="edit_date", type="datetime")
+     * @ORM\Column(name="edit_date", type="datetime", nullable=true)
      */
     private $editDate;
 
@@ -68,6 +68,13 @@ class Account
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="short_name", type="string", length=255, nullable=true)
+     */
+    private $shortName;
 
     /**
      * Get id.
@@ -245,5 +252,29 @@ class Account
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set shortName.
+     *
+     * @param string $shortName
+     *
+     * @return Account
+     */
+    public function setShortName($shortName)
+    {
+        $this->shortName = $shortName;
+
+        return $this;
+    }
+
+    /**
+     * Get shortName.
+     *
+     * @return string
+     */
+    public function getShortName()
+    {
+        return $this->shortName;
     }
 }

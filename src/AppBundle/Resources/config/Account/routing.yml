@@ -5,3 +5,11 @@ accounts_collection:
 accounts_create:
     path:       /new
     defaults:   { _controller: AppBundle:Account:create }
+
+accounts_update:
+    path:       /{accountId}/edit
+    defaults:   { _controller: AppBundle:Account:update }
+
+accounts_delete:
+    path:       /{accountId}/delete
+    defaults:   { _controller: AppBundle:Account:delete }

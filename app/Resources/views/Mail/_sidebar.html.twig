@@ -4,10 +4,16 @@
         <span class="app-label">Mailboxes</span>
 
         <ul>
-            <li data-href="{{ path('inbox') }}">
+            <li data-href="{{ path('inbox') }}" id="sidebar-nl-unified">
                 <i class="fa fa-inbox"></i>
                 Inbox
             </li>
+            {% for acc in accounts %}
+                <li data-href="#" id="sidebar-nl-{{ acc.accountId }}">
+                    <i class="fa fa-inbox"></i>
+                    {{ acc.shortName|default(acc.emailAddress)|truncate(20) }}
+                </li>
+            {% endfor %}
         </ul>
     </div>
 
@@ -33,17 +39,21 @@
     <div class="app-section">
         <span class="app-label">Accounts</span>
 
-        {% if accounts|length() > 0 %}
-            <ul>
-            </ul>
-        {% else %}
-            <div class="app-link-box">
-                <a class="btn btn-link" href="{{ path('accounts_create') }}">
-                    <i class="fa fa-plus"></i>
-                    Add Account
-                </a>
-            </div>
-        {% endif %}
+        <ul>
+            {% for acc in accounts %}
+                <li data-href="#">
+                    <i class="fa fa-at"></i>
+                    {{ acc.shortName|default(acc.emailAddress)|truncate(20) }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="app-link-box">
+            <a class="btn btn-link" href="{{ path('accounts_create', {'step': 'nylas'}) }}">
+                <i class="fa fa-plus"></i>
+                Add Account
+            </a>
+        </div>
 
     </div>
 

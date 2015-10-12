@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "~3.3.5",
-    "font-awesome": "~4.4.0"
+    "font-awesome": "~4.4.0",
+    "jQuery.dotdotdot": "https://github.com/BeSite/jQuery.dotdotdot.git#~1.7.4"
   }
 }

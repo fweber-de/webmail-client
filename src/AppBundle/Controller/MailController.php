@@ -18,7 +18,7 @@ class MailController extends Controller
 
     public function sidebarAction()
     {
-        $accounts = [];
+        $accounts = $this->getDoctrine()->getRepository('AppBundle:Account')->findByUser($this->getUser());
 
         return $this->render('Mail/_sidebar.html.twig', [
             'accounts' => $accounts,
