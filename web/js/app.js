@@ -14,6 +14,13 @@ window.resizeElements = function() {
         return $(window).innerHeight() - navbarHeight - 1;
     });
 
+    //detail
+    $('.app-detail').css('height', function() {
+        var navbarHeight = $('#app-navbar').innerHeight();
+
+        return $(window).innerHeight() - navbarHeight - 1;
+    });
+
 };
 
 $(document).ready(function() {
