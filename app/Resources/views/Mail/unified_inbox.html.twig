@@ -1,0 +1,7 @@
+{% extends 'Mail/mail_layout.html.twig' %}
+
+{% block currentSection2 %}unified{% endblock %}
+
+{% block elements %}
+    {{ render(controller('AppBundle:Mail:elements', {'accountId': null})) }}
+{% endblock %}

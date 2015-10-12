@@ -1,36 +1,36 @@
-<div class="app-elements col-lg-3 col-md-3">
+{% if elements|length() > 0 %}
 
-    <ul>
+<ul>
+    {% for message in elements %}
         <li>
-            <span class="app-mail-date pull-right">09.10.2015</span>
+            <span class="app-mail-date pull-right">{{ message.date|date('d.m.Y') }}</span>
             <div>
-                <i class="app-font-info fa fa-circle"></i>
-                <span class="app-mail-from">Hartmut Kampe</span>
+                {% if message.unread %}
+                    <i class="app-font-info fa fa-circle"></i>
+                {% else %}
+                    <i class="app-font-transp fa fa-circle"></i>
+                {% endif %}
+
+                <span class="app-mail-from">{{ message.from[0].name|default(message.from[0].email) }}</span>
             </div>
             <div>
-                <span class="app-mail-title">AW: Berlin</span>
+                <span class="app-mail-title">{{ message.subject|truncate(35) }}</span>
             </div>
             <div>
                 <p class="app-mail-text">
-                    Lorem ipsum dolor sit ame...
+                    {{ message.snippet|truncate(40) }}
                 </p>
             </div>
         </li>
-        <li>
-            <span class="app-mail-date pull-right">08.10.2015</span>
-            <div>
-                <i class="app-font-transp fa fa-circle"></i>
-                <span class="app-mail-from">info@weber-elektronik.de</span>
-            </div>
-            <div>
-                <span class="app-mail-title">Re: AW: InFocus RealCam INF-SPTZ-2</span>
-            </div>
-            <div>
-                <p class="app-mail-text">
-                    Lorem ipsum dolor sit ame...
-                </p>
-            </div>
-        </li>
-    </ul>
+    {% endfor %}
+</ul>
 
-</div>
+{% else %}
+
+    <div class="app-no-mail">
+        <i class="fa fa-envelope-o"></i>
+        <br>
+        No Messages found!
+    </div>
+
+{% endif %}

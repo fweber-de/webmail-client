@@ -9,7 +9,7 @@
                 Inbox
             </li>
             {% for acc in accounts %}
-                <li data-href="#" id="sidebar-nl-{{ acc.accountId }}">
+                <li data-href="{{ path('inbox_account', {'accountId': acc.accountId}) }}" id="sidebar-nl-{{ acc.accountId }}">
                     <i class="fa fa-inbox"></i>
                     {{ acc.shortName|default(acc.emailAddress)|truncate(20) }}
                 </li>

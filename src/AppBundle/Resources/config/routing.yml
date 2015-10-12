@@ -3,8 +3,12 @@ dashboard:
     defaults:   { _controller: AppBundle:Page:dashboard }
 
 inbox:
-    path:       /inbox
-    defaults:   { _controller: AppBundle:Mail:inbox }
+    path:       /mail/inbox
+    defaults:   { _controller: AppBundle:Mail:unifiedInbox }
+
+inbox_account:
+    path:       /mail/{accountId}/inbox
+    defaults:   { _controller: AppBundle:Mail:accountInbox }
 
 accounts:
     resource:   "@AppBundle/Resources/config/Account/routing.yml"

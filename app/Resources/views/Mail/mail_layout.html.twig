@@ -9,7 +9,11 @@
 
         {{ render(controller('AppBundle:Mail:sidebar')) }}
 
-        {% include 'Mail/_elements.html.twig' %}
+        <div class="app-elements col-lg-3 col-md-3">
+
+            {% block elements %}{% endblock %}
+
+        </div>
 
         {% include 'Mail/_detail.html.twig' %}
 
