@@ -7,14 +7,16 @@
             <div>
                 {% if message.unread %}
                     <i class="app-font-info fa fa-circle"></i>
+                {% elseif message.starred %}
+                    <i class="app-font-warning fa fa-circle"></i>
                 {% else %}
-                    <i class="app-font-transp fa fa-circle"></i>
+                    <i class="app-font-info fa fa-circle-o"></i>
                 {% endif %}
 
-                <span class="app-mail-from">{{ message.from[0].name|default(message.from[0].email) }}</span>
+                <span class="app-mail-from">{{ message.from[0].name|default(message.from[0].email)|truncate(25) }}</span>
             </div>
             <div>
-                <span class="app-mail-title">{{ message.subject|truncate(35) }}</span>
+                <span class="app-mail-title">{{ message.subject|truncate(30) }}</span>
             </div>
             <div>
                 <p class="app-mail-text">
