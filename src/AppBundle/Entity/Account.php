@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Account.
@@ -75,6 +76,16 @@ class Account
      * @ORM\Column(name="short_name", type="string", length=255, nullable=true)
      */
     private $shortName;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="account")
+     */
+    private $messages;
+
+    public function __construct()
+    {
+        $this->messages = new ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -276,5 +287,39 @@ class Account
     public function getShortName()
     {
         return $this->shortName;
+    }
+
+    /**
+     * Add message.
+     *
+     * @param \AppBundle\Entity\Messages $message
+     *
+     * @return Account
+     */
+    public function addMessage(\AppBundle\Entity\Messages $message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Remove message.
+     *
+     * @param \AppBundle\Entity\Messages $message
+     */
+    public function removeMessage(\AppBundle\Entity\Messages $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

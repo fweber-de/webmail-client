@@ -5,15 +5,15 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Message
+ * Message.
  *
- * @ORM\Table()
+ * @ORM\Table("message")
  * @ORM\Entity
  */
 class Message
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -85,14 +85,14 @@ class Message
     private $receiveDate;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="unread", type="boolean")
      */
     private $unread;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="starred", type="boolean")
      */
@@ -119,11 +119,16 @@ class Message
      */
     private $originalJson;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Account", inversedBy="messages")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
+     */
+    private $account;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -131,7 +136,7 @@ class Message
     }
 
     /**
-     * Set messageId
+     * Set messageId.
      *
      * @param string $messageId
      *
@@ -145,7 +150,7 @@ class Message
     }
 
     /**
-     * Get messageId
+     * Get messageId.
      *
      * @return string
      */
@@ -155,7 +160,7 @@ class Message
     }
 
     /**
-     * Set subject
+     * Set subject.
      *
      * @param string $subject
      *
@@ -169,7 +174,7 @@ class Message
     }
 
     /**
-     * Get subject
+     * Get subject.
      *
      * @return string
      */
@@ -179,7 +184,7 @@ class Message
     }
 
     /**
-     * Set fromName
+     * Set fromName.
      *
      * @param string $fromName
      *
@@ -193,7 +198,7 @@ class Message
     }
 
     /**
-     * Get fromName
+     * Get fromName.
      *
      * @return string
      */
@@ -203,7 +208,7 @@ class Message
     }
 
     /**
-     * Set fromEmail
+     * Set fromEmail.
      *
      * @param string $fromEmail
      *
@@ -217,7 +222,7 @@ class Message
     }
 
     /**
-     * Get fromEmail
+     * Get fromEmail.
      *
      * @return string
      */
@@ -227,7 +232,7 @@ class Message
     }
 
     /**
-     * Set receiver
+     * Set receiver.
      *
      * @param string $receiver
      *
@@ -241,7 +246,7 @@ class Message
     }
 
     /**
-     * Get receiver
+     * Get receiver.
      *
      * @return string
      */
@@ -251,7 +256,7 @@ class Message
     }
 
     /**
-     * Set cc
+     * Set cc.
      *
      * @param string $cc
      *
@@ -265,7 +270,7 @@ class Message
     }
 
     /**
-     * Get cc
+     * Get cc.
      *
      * @return string
      */
@@ -275,7 +280,7 @@ class Message
     }
 
     /**
-     * Set bcc
+     * Set bcc.
      *
      * @param string $bcc
      *
@@ -289,7 +294,7 @@ class Message
     }
 
     /**
-     * Get bcc
+     * Get bcc.
      *
      * @return string
      */
@@ -299,7 +304,7 @@ class Message
     }
 
     /**
-     * Set replyTo
+     * Set replyTo.
      *
      * @param string $replyTo
      *
@@ -313,7 +318,7 @@ class Message
     }
 
     /**
-     * Get replyTo
+     * Get replyTo.
      *
      * @return string
      */
@@ -323,7 +328,7 @@ class Message
     }
 
     /**
-     * Set receiveDate
+     * Set receiveDate.
      *
      * @param string $receiveDate
      *
@@ -337,7 +342,7 @@ class Message
     }
 
     /**
-     * Get receiveDate
+     * Get receiveDate.
      *
      * @return string
      */
@@ -347,9 +352,9 @@ class Message
     }
 
     /**
-     * Set unread
+     * Set unread.
      *
-     * @param boolean $unread
+     * @param bool $unread
      *
      * @return Message
      */
@@ -361,9 +366,9 @@ class Message
     }
 
     /**
-     * Get unread
+     * Get unread.
      *
-     * @return boolean
+     * @return bool
      */
     public function getUnread()
     {
@@ -371,9 +376,9 @@ class Message
     }
 
     /**
-     * Set starred
+     * Set starred.
      *
-     * @param boolean $starred
+     * @param bool $starred
      *
      * @return Message
      */
@@ -385,9 +390,9 @@ class Message
     }
 
     /**
-     * Get starred
+     * Get starred.
      *
-     * @return boolean
+     * @return bool
      */
     public function getStarred()
     {
@@ -395,7 +400,7 @@ class Message
     }
 
     /**
-     * Set snippet
+     * Set snippet.
      *
      * @param string $snippet
      *
@@ -409,7 +414,7 @@ class Message
     }
 
     /**
-     * Get snippet
+     * Get snippet.
      *
      * @return string
      */
@@ -419,7 +424,7 @@ class Message
     }
 
     /**
-     * Set body
+     * Set body.
      *
      * @param string $body
      *
@@ -433,7 +438,7 @@ class Message
     }
 
     /**
-     * Get body
+     * Get body.
      *
      * @return string
      */
@@ -443,7 +448,7 @@ class Message
     }
 
     /**
-     * Set originalJson
+     * Set originalJson.
      *
      * @param string $originalJson
      *
@@ -457,7 +462,7 @@ class Message
     }
 
     /**
-     * Get originalJson
+     * Get originalJson.
      *
      * @return string
      */
@@ -465,5 +470,28 @@ class Message
     {
         return $this->originalJson;
     }
-}
 
+    /**
+     * Set account.
+     *
+     * @param \AppBundle\Entity\Account $account
+     *
+     * @return Message
+     */
+    public function setAccount(\AppBundle\Entity\Account $account = null)
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * Get account.
+     *
+     * @return \AppBundle\Entity\Account
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+}
