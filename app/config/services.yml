@@ -1,10 +1,11 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
-parameters:
-#    parameter_name: value
-
 services:
     twig.extension.text:
-         class: Twig_Extensions_Extension_Text
-         tags:
-             - { name: twig.extension }
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+    app.mail_collector:
+        class: AppBundle\Service\MailCollectorService
+        arguments:
+            - @doctrine
+            - null #user
+            - "%nylas.message_endpoint%"

@@ -3,8 +3,6 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Seld\JsonLint\JsonParser;
-use GuzzleHttp\Client;
 
 /**
  * MailController.
@@ -39,34 +37,11 @@ class MailController extends Controller
     public function elementsAction($accountId)
     {
         $elements = [];
-        $client = new Client();
-        $parser = new JsonParser();
 
         if (!$accountId) {
             $accounts = $this->getDoctrine()->getRepository('AppBundle:Account')->findByUser($this->getUser());
-
-            foreach ($accounts as $account) {
-                $_response = $client->request('GET', 'https://api.nylas.com/messages?in=inbox', [
-                    'auth' => [$account->getAccessToken(), null],
-                    'verify' => false,
-                ]);
-
-                $messages = json_decode((string) $_response->getBody());
-
-                foreach ($messages as $message) {
-                    $elements[$message->date] = $message;
-                }
-            }
-
-            krsort($elements);
         } else {
             $account = $this->getDoctrine()->getRepository('AppBundle:Account')->findOneByAccountId($accountId);
-            $_response = $client->request('GET', 'https://api.nylas.com/messages?in=inbox', [
-                'auth' => [$account->getAccessToken(), null],
-                'verify' => false,
-            ]);
-
-            $elements = json_decode((string) $_response->getBody());
         }
 
         return $this->render('Mail/_elements.html.twig', [

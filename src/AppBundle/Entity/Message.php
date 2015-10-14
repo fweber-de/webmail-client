@@ -126,6 +126,13 @@ class Message
     private $account;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="inbox", type="string", length=255)
+     */
+    private $inbox;
+
+    /**
      * Get id.
      *
      * @return int
@@ -493,5 +500,29 @@ class Message
     public function getAccount()
     {
         return $this->account;
+    }
+
+    /**
+     * Set inbox.
+     *
+     * @param string $inbox
+     *
+     * @return Message
+     */
+    public function setInbox($inbox)
+    {
+        $this->inbox = $inbox;
+
+        return $this;
+    }
+
+    /**
+     * Get inbox.
+     *
+     * @return string
+     */
+    public function getInbox()
+    {
+        return $this->inbox;
     }
 }
