@@ -21,3 +21,4 @@ parameters:
     #nylas
     nylas.client_id:        null
     nylas.client_secret:    null
+    nylas.message_endpoint: null

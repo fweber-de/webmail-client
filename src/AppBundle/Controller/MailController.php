@@ -39,9 +39,20 @@ class MailController extends Controller
         $elements = [];
 
         if (!$accountId) {
-            $accounts = $this->getDoctrine()->getRepository('AppBundle:Account')->findByUser($this->getUser());
+            $elements = $this->getDoctrine()->getRepository('AppBundle:Message')->findBy([
+                'user' => $this->getUser(),
+                'inbox' => 'inbox',
+            ], [
+                'receiveDate' => 'desc'
+            ]);
         } else {
             $account = $this->getDoctrine()->getRepository('AppBundle:Account')->findOneByAccountId($accountId);
+            $elements = $this->getDoctrine()->getRepository('AppBundle:Message')->findBy([
+                'account' => $account,
+                'inbox' => 'inbox',
+            ], [
+                'receiveDate' => 'desc'
+            ]);
         }
 
         return $this->render('Mail/_elements.html.twig', [
