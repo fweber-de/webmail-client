@@ -45,6 +45,22 @@ $(document).ready(function() {
     //sidebar highlights
     $('#sidebar-nl-' + section2).addClass('app-active');
 
+    //refresh
+    $('#nl-refresh').click(function(e) {
+        e.preventDefault();
+
+        var url = Routing.generate('_json_refresh_inbox', {
+            'inbox': 'inbox',
+            'accountId': null
+        });
+
+        $('#darken').addClass('hidden').removeClass('visible');
+
+        $.getJSON(url, function(data) {
+            $('#darken').removeClass('hidden').addClass('visible');
+        });
+    });
+
     $(window).resize(function() {
         window.resizeElements();
     });

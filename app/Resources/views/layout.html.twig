@@ -44,4 +44,39 @@
     <!-- CONTENT -->
     {% block content %}{% endblock %}
 
+    <style>
+        div#spinner {
+            display: none;
+            width: 290px;
+            height: 50px;
+            position: fixed;
+            top: 50%;
+            left: 45%;
+            text-align: center;
+            padding: 10px;
+            font-size: 24px;
+            border: 1px solid #CCCCCC;
+            border-radius: 80px;
+            margin-left: -50px;
+            margin-top: -50px;
+            z-index: 9999;
+            overflow: hidden;
+            background-color: rgba(250, 250, 250, 0.5);
+        }
+    </style>
+
+    <div id="spinner">
+        <i class="fa fa-circle-o-notch fa-spin text-success"></i> Please Wait
+    </div>
+
+    <div class="hidden" id="darken"
+         style="left: 0px; top: 0px; z-index: 9998;
+         font-family: Verdana;
+         font-size: 12px;
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         background-color: rgba(128, 128, 128, 0.5);">
+    </div>
+
 {% endblock %}

@@ -59,21 +59,21 @@ class Message
     /**
      * @var string
      *
-     * @ORM\Column(name="cc", type="string", length=255)
+     * @ORM\Column(name="cc", type="string", length=255, nullable=true)
      */
     private $cc;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bcc", type="string", length=255)
+     * @ORM\Column(name="bcc", type="string", length=255, nullable=true)
      */
     private $bcc;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reply_to", type="string", length=255)
+     * @ORM\Column(name="reply_to", type="string", length=255, nullable=true)
      */
     private $replyTo;
 
@@ -131,6 +131,12 @@ class Message
      * @ORM\Column(name="inbox", type="string", length=255)
      */
     private $inbox;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * Get id.
@@ -524,5 +530,29 @@ class Message
     public function getInbox()
     {
         return $this->inbox;
+    }
+
+    /**
+     * Set user.
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Message
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

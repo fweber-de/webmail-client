@@ -10,6 +10,14 @@ inbox_account:
     path:       /mail/{accountId}/inbox
     defaults:   { _controller: AppBundle:Mail:accountInbox }
 
+_json_get_message:
+    path:       /mail/api/getMessage/{messageId}
+    defaults:   { _controller: AppBundle:Mail:getMessage }
+
+_json_refresh_inbox:
+    path:       /mail/api/refreshInbox
+    defaults:   { _controller: AppBundle:Mail:refreshInbox }
+
 accounts:
     resource:   "@AppBundle/Resources/config/Account/routing.yml"
     prefix:     /accounts

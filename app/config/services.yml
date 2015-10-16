@@ -3,9 +3,12 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - { name: twig.extension }
+    app.guzzle:
+        class: GuzzleHttp\Client
     app.mail_collector:
         class: AppBundle\Service\MailCollectorService
         arguments:
-            - @doctrine
-            - null #user
+            - "@doctrine"
+            - "@security.token_storage"
             - "%nylas.message_endpoint%"
+            - "@app.guzzle"

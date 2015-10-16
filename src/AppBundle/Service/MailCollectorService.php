@@ -4,22 +4,33 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Account;
 use AppBundle\Entity\Message;
-use GuzzleHttp\Client;
 
+/**
+ * MailCollectorService.
+ *
+ * @author Florian Weber <florian.weber.dd@icloud.com>
+ */
 class MailCollectorService
 {
     protected $doctrine;
     protected $user;
+
+    /**
+     * @var string The Nylas Messages Endpoint
+     */
     protected $messageEndpoint;
+
+    /**
+     * @var GuzzleHttp\Client
+     */
     protected $guzzleClient;
 
-    public function __construct($doctrine, $user, $messageEndpoint)
+    public function __construct($doctrine, $tokenStorage, $messageEndpoint, $guzzleClient)
     {
-        $this->db = $doctrine;
-        $this->user = $user;
+        $this->doctrine = $doctrine;
+        $this->user = $tokenStorage->getToken()->getUser();
         $this->messageEndpoint = $messageEndpoint;
-
-        $this->guzzleClient = new Client();
+        $this->guzzleClient = $guzzleClient;
     }
 
     /**
@@ -30,6 +41,19 @@ class MailCollectorService
      */
     public function collectMail(Account $account, $box = 'inbox')
     {
+        $em = $this->doctrine->getManager();
+
+        //delete old emails
+        $oldMessages = $this->doctrine->getRepository('AppBundle:Message')->findBy([
+            'inbox' => $box,
+            'user' => $this->user,
+            'account' => $account,
+        ]);
+
+        foreach ($oldMessages as $om) {
+            $em->remove($om);
+        }
+
         //request mail from nylas
         $url = $this->messageEndpoint.'?'.http_build_query([
             'in' => $box,
@@ -43,18 +67,8 @@ class MailCollectorService
         //parse string to object
         $parsed = json_decode((string) $_response->getBody());
 
-        //delete old emails
-        $oldMessages = $this->doctrine->getRepository('AppBundle:Message')->findBy([
-            'inbox' => $box,
-            'user' => $this->user,
-            'account' => $account,
-        ]);
-
-        $em = $this->doctrine->getManager();
-        $em->remove($oldMessages);
-
         //persist
-        $this->persistMessages($parsed, $em);
+        $this->persistMessages($elements, $em, (string) $_response->getBody(), $account, $box);
 
         $em->flush();
     }
@@ -72,6 +86,18 @@ class MailCollectorService
             'in' => $box,
         ]);
 
+        //delete old emails
+        $oldMessages = $this->doctrine->getRepository('AppBundle:Message')->findBy([
+            'inbox' => $box,
+            'user' => $this->user,
+        ]);
+
+        $em = $this->doctrine->getManager();
+
+        foreach ($oldMessages as $om) {
+            $em->remove($om);
+        }
+
         foreach ($accounts as $account) {
             $_response = $this->guzzleClient->request('GET', $url, [
                 'auth' => [$account->getAccessToken(), null],
@@ -80,22 +106,9 @@ class MailCollectorService
 
             $messages = json_decode((string) $_response->getBody());
 
-            foreach ($messages as $message) {
-                $elements[] = $message;
-            }
+            //persist
+            $this->persistMessages($messages, $em, (string) $_response->getBody(), $account, $box);
         }
-
-        //delete old emails
-        $oldMessages = $this->doctrine->getRepository('AppBundle:Message')->findBy([
-            'inbox' => $box,
-            'user' => $this->user,
-        ]);
-
-        $em = $this->doctrine->getManager();
-        $em->remove($oldMessages);
-
-        //persist
-        $this->persistMessages($elements, $em);
 
         $em->flush();
     }
@@ -106,30 +119,53 @@ class MailCollectorService
      * @param \stdClass $parsed
      * @param $em
      */
-    protected function persistMessages($parsed, $em)
+    protected function persistMessages($parsed, $em, $originalJson, $account, $box)
     {
         foreach ($parsed as $_message) {
             $message = new Message();
             $message
-                ->setMessageId($_message->message_id)
+                ->setMessageId($_message->id)
                 ->setSubject($_message->subject)
-                ->setFromName('')
-                ->setFromEmail('')
-                ->setReceiver('')
-                ->setCc('')
-                ->setBcc('')
-                ->setReplyTo('')
-                ->setReceiveDate(new \DateTime($_message->date))
+                ->setFromName($_message->from[0]->name)
+                ->setFromEmail($_message->from[0]->email)
+                ->setReceiver($this->flattenMailPersons($_message->to))
+                ->setCc($this->flattenMailPersons($_message->cc))
+                ->setBcc($this->flattenMailPersons($_message->bcc))
+                ->setReplyTo($this->flattenMailPersons($_message->reply_to))
+                ->setReceiveDate((new \DateTime())->setTimestamp($_message->date))
                 ->setUnread($_message->unread)
                 ->setStarred($_message->starred)
                 ->setSnippet($_message->snippet)
                 ->setBody($_message->body)
-                ->setOriginalJson((string) $_response->getBody())
+                ->setOriginalJson($originalJson)
                 ->setAccount($account)
                 ->setInbox($box)
             ;
 
             $em->persist($message);
         }
+    }
+
+    /**
+     * Flattens a mail person object from the nylas response (to, cc, bcc, reply_to, ...) to a string
+     * pattern: <person:name>|<person:email>;...
+     *
+     * @param \stdClass $persons
+     *
+     * @return string
+     */
+    protected function flattenMailPersons($persons)
+    {
+        if (count($persons) == 0) {
+            return;
+        }
+
+        $flat = [];
+
+        foreach ($persons as $person) {
+            $flat[] = $person->name.'|'.$person->email;
+        }
+
+        return implode(';', $flat);
     }
 }
