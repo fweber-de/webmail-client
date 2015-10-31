@@ -1,6 +1,13 @@
-dashboard:
-    path:       /
-    defaults:   { _controller: AppBundle:Page:dashboard }
+# dashboard:
+#     path:       /
+#     defaults:   { _controller: AppBundle:Page:dashboard }
+
+index:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: inbox
+        permanent: false
 
 inbox:
     path:       /mail/inbox
