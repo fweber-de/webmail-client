@@ -78,9 +78,9 @@ class Message
     private $replyTo;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="receive_date", type="string", length=255)
+     * @ORM\Column(name="receive_date", type="datetime")
      */
     private $receiveDate;
 
@@ -343,7 +343,7 @@ class Message
     /**
      * Set receiveDate.
      *
-     * @param string $receiveDate
+     * @param \DateTime $receiveDate
      *
      * @return Message
      */
@@ -357,7 +357,7 @@ class Message
     /**
      * Get receiveDate.
      *
-     * @return string
+     * @return \DateTime
      */
     public function getReceiveDate()
     {
@@ -485,30 +485,6 @@ class Message
     }
 
     /**
-     * Set account.
-     *
-     * @param \AppBundle\Entity\Account $account
-     *
-     * @return Message
-     */
-    public function setAccount(\AppBundle\Entity\Account $account = null)
-    {
-        $this->account = $account;
-
-        return $this;
-    }
-
-    /**
-     * Get account.
-     *
-     * @return \AppBundle\Entity\Account
-     */
-    public function getAccount()
-    {
-        return $this->account;
-    }
-
-    /**
      * Set inbox.
      *
      * @param string $inbox
@@ -530,6 +506,30 @@ class Message
     public function getInbox()
     {
         return $this->inbox;
+    }
+
+    /**
+     * Set account.
+     *
+     * @param \AppBundle\Entity\Account $account
+     *
+     * @return Message
+     */
+    public function setAccount(\AppBundle\Entity\Account $account = null)
+    {
+        $this->account = $account;
+
+        return $this;
+    }
+
+    /**
+     * Get account.
+     *
+     * @return \AppBundle\Entity\Account
+     */
+    public function getAccount()
+    {
+        return $this->account;
     }
 
     /**

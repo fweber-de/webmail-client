@@ -87,12 +87,13 @@ class MailController extends Controller
     public function refreshInboxAction(Request $request)
     {
         $inbox = $request->get('inbox', null);
+        $accountId = $request->get('accountId', null);
 
         if ($inbox == null) {
             throw new \Exception('Parameter inbox is required!');
         }
 
-        if ($request->get('accountId', null) == null) {
+        if ($accountId == null) {
             $this->get('app.mail_collector')->collectAllMail($inbox);
         } else {
             $account = $this->getDoctrine()->getRepository('AppBundle:Account')->findOneByAccountId($accountId);

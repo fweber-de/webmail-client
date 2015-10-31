@@ -68,7 +68,7 @@ class MailCollectorService
         $parsed = json_decode((string) $_response->getBody());
 
         //persist
-        $this->persistMessages($elements, $em, (string) $_response->getBody(), $account, $box);
+        $this->persistMessages($parsed, $em, (string) $_response->getBody(), $account, $box);
 
         $em->flush();
     }
@@ -140,6 +140,7 @@ class MailCollectorService
                 ->setOriginalJson($originalJson)
                 ->setAccount($account)
                 ->setInbox($box)
+                ->setUser($this->user)
             ;
 
             $em->persist($message);

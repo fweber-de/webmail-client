@@ -3,7 +3,7 @@
 <ul>
     {% for message in elements %}
         <li>
-            <span class="app-mail-date pull-right">{{ message.date|date('d.m.Y') }}</span>
+            <span class="app-mail-date pull-right">{{ message.receiveDate|date('d.m.Y') }}</span>
             <div>
                 {% if message.unread %}
                     <i class="app-font-info fa fa-circle"></i>
@@ -13,14 +13,14 @@
                     <i class="app-font-info fa fa-circle-o"></i>
                 {% endif %}
 
-                <span class="app-mail-from">{{ message.from[0].name|default(message.from[0].email)|truncate(25) }}</span>
+                <span class="app-mail-from">{{ message.fromName|default(message.fromEmail)|truncate(25) }}</span>
             </div>
             <div>
                 <span class="app-mail-title">{{ message.subject|truncate(30) }}</span>
             </div>
             <div>
                 <p class="app-mail-text">
-                    {{ message.snippet|truncate(40) }}
+                    {{ message.snippet|truncate(37)|trim }}
                 </p>
             </div>
         </li>

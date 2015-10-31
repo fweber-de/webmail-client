@@ -49,15 +49,20 @@ $(document).ready(function() {
     $('#nl-refresh').click(function(e) {
         e.preventDefault();
 
+        var accountId = (section2 !== 'unified') ? section2 : null;
+
         var url = Routing.generate('_json_refresh_inbox', {
             'inbox': 'inbox',
-            'accountId': null
+            'accountId': accountId
         });
 
-        $('#darken').addClass('hidden').removeClass('visible');
+        console.log(section2);
+
+        $('#darken').addClass('visible').removeClass('hidden');
+        $('#spinner').show();
 
         $.getJSON(url, function(data) {
-            $('#darken').removeClass('hidden').addClass('visible');
+            window.location.href = window.location.href;
         });
     });
 
