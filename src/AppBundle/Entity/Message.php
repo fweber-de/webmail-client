@@ -3,12 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Message.
  *
  * @ORM\Table("message")
  * @ORM\Entity
+ *
+ * @ExclusionPolicy("all")
  */
 class Message
 {
@@ -18,6 +22,8 @@ class Message
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
      */
     private $id;
 
@@ -25,6 +31,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="message_id", type="string", length=255)
+     *
+     * @Expose
      */
     private $messageId;
 
@@ -32,6 +40,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="subject", type="string", length=255)
+     *
+     * @Expose
      */
     private $subject;
 
@@ -39,6 +49,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="from_name", type="string", length=255)
+     *
+     * @Expose
      */
     private $fromName;
 
@@ -46,6 +58,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="from_email", type="string", length=255)
+     *
+     * @Expose
      */
     private $fromEmail;
 
@@ -53,6 +67,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="receiver", type="string", length=255)
+     *
+     * @Expose
      */
     private $receiver;
 
@@ -60,6 +76,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="cc", type="string", length=255, nullable=true)
+     *
+     * @Expose
      */
     private $cc;
 
@@ -67,6 +85,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="bcc", type="string", length=255, nullable=true)
+     *
+     * @Expose
      */
     private $bcc;
 
@@ -74,6 +94,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="reply_to", type="string", length=255, nullable=true)
+     *
+     * @Expose
      */
     private $replyTo;
 
@@ -81,6 +103,8 @@ class Message
      * @var \DateTime
      *
      * @ORM\Column(name="receive_date", type="datetime")
+     *
+     * @Expose
      */
     private $receiveDate;
 
@@ -88,6 +112,8 @@ class Message
      * @var bool
      *
      * @ORM\Column(name="unread", type="boolean")
+     *
+     * @Expose
      */
     private $unread;
 
@@ -95,6 +121,8 @@ class Message
      * @var bool
      *
      * @ORM\Column(name="starred", type="boolean")
+     *
+     * @Expose
      */
     private $starred;
 
@@ -102,6 +130,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="snippet", type="string", length=255)
+     *
+     * @Expose
      */
     private $snippet;
 
@@ -109,6 +139,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="body", type="text")
+     *
+     * @Expose
      */
     private $body;
 
@@ -129,6 +161,8 @@ class Message
      * @var string
      *
      * @ORM\Column(name="inbox", type="string", length=255)
+     *
+     * @Expose
      */
     private $inbox;
 

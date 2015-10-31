@@ -26,9 +26,9 @@ window.resizeElements = function() {
 $(document).ready(function() {
 
     //page sections
-    var section1 = $('#current-section-1').html();
-    var section2 = $('#current-section-2').html();
-    var section3 = $('#current-section-3').html();
+    window.section1 = $('#current-section-1').html();
+    window.section2 = $('#current-section-2').html();
+    window.section3 = $('#current-section-3').html();
 
     //sidebar click
     $('.app-sidebar ul > li').click(function(e) {

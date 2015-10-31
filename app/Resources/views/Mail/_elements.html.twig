@@ -2,7 +2,7 @@
 
 <ul>
     {% for message in elements %}
-        <li>
+        <li data-mailid="{{ message.id }}">
             <span class="app-mail-date pull-right">{{ message.receiveDate|date('d.m.Y') }}</span>
             <div>
                 {% if message.unread %}

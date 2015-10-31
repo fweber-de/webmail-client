@@ -65,15 +65,15 @@ class MailController extends Controller
     /**
      * JSON ENDPOINT.
      *
-     * @param int $messageId
+     * @param int $id
      *
      * @return Reponse
      */
-    public function getMessageAction($messageId)
+    public function getMessageAction($id)
     {
-        $message = $this->getDoctrine()->getRepository('AppBundle:Message')->findOneById($messageId);
+        $message = $this->getDoctrine()->getRepository('AppBundle:Message')->findOneById($id);
 
-        $jsonContent = $this->get('serializer')->serialize($message, 'json');
+        $jsonContent = $this->get('jms_serializer')->serialize($message, 'json');
 
         $response = new Response($jsonContent);
         $response->headers->set('Content-Type', 'application/json');

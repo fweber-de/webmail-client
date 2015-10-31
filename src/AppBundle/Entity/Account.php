@@ -292,11 +292,11 @@ class Account
     /**
      * Add message.
      *
-     * @param \AppBundle\Entity\Messages $message
+     * @param \AppBundle\Entity\Message $message
      *
      * @return Account
      */
-    public function addMessage(\AppBundle\Entity\Messages $message)
+    public function addMessage(\AppBundle\Entity\Message $message)
     {
         $this->messages[] = $message;
 
@@ -306,9 +306,9 @@ class Account
     /**
      * Remove message.
      *
-     * @param \AppBundle\Entity\Messages $message
+     * @param \AppBundle\Entity\Message $message
      */
-    public function removeMessage(\AppBundle\Entity\Messages $message)
+    public function removeMessage(\AppBundle\Entity\Message $message)
     {
         $this->messages->removeElement($message);
     }
