@@ -1,3 +1,50 @@
 <div class="app-detail col-lg-7 col-md-7">
-
+    <div id="mail-header"></div>
+    <iframe id="mail-frame"></iframe>
 </div>
+
+<!-- HANDLEBARS -->
+{% verbatim %}
+    <script id="mail-header-template" type="text/x-handlebars-template">
+
+        <div class="app-box">
+            <span class="app-mail-title">{{ message.subject }}</span>
+
+            <span class="app-mail-date">3 days ago, 08:28am</span>
+
+            <table class="app-mail-info">
+                <tr>
+                    <td class="app-mail-from">From:</td>
+                    <td class="app-mail-from">
+                        {{ message.from_name }}
+                        <small>{{ message.from_email }}</small>
+                    </td>
+                </tr>
+
+                {{#if message.cc }}
+                <tr>
+                    <td class="app-mail-cc">CC:</td>
+                    <td class="app-mail-cc">#</td>
+                </tr>
+                {{/if}}
+
+                {{#if message.bcc }}
+                <tr>
+                    <td class="app-mail-cc">BCC:</td>
+                    <td class="app-mail-cc">#</td>
+                </tr>
+                {{/if}}
+
+            </table>
+        </div>
+
+        <div class="app-divider"></div>
+
+    </script>
+
+    <script id="mail-template" type="text/x-handlebars-template">
+
+        <div class="app-mail-text">{{{ message.body }}}</div>
+
+    </script>
+{% endverbatim %}

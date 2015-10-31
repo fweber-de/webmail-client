@@ -18,7 +18,7 @@ inbox_account:
     defaults:   { _controller: AppBundle:Mail:accountInbox }
 
 _json_get_message:
-    path:       /mail/api/getMessage/{messageId}
+    path:       /mail/api/getMessage/{id}
     defaults:   { _controller: AppBundle:Mail:getMessage }
 
 _json_refresh_inbox:
